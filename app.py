@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import *
 from rfoutlet import codesend
 
 
@@ -9,9 +9,9 @@ def index():
     return render_template('index.html')
 
 @app.route('/toggle/<code>')
-def toggle():
-	codesend("4543795")
-	return redirect('/')
+def toggle(code):
+	codesend(code)
+	return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
